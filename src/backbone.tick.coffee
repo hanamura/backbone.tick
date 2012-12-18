@@ -11,12 +11,12 @@ class Tick
 	constructor: (options = null) ->
 		interval = 1000 / (options?.fps or 20)
 
-		r = @requestAnimationFrame ||
-			@webkitRequestAnimationFrame ||
-			@mozRequestAnimationFrame ||
-			@oRequestAnimationFrame ||
-			@msRequestAnimationFrame ||
-			(callback, element) -> @setTimeout(callback, interval)
+		r = window.requestAnimationFrame ||
+			window.webkitRequestAnimationFrame ||
+			window.mozRequestAnimationFrame ||
+			window.oRequestAnimationFrame ||
+			window.msRequestAnimationFrame ||
+			(callback, element) -> window.setTimeout(callback, interval)
 
 		r f = =>
 			@trigger 'tick', @
